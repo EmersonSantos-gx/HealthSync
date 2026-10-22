@@ -110,7 +110,7 @@ export default function LoginScreen({ navigation }) {
           </TouchableOpacity>
 
           <Image
-            source={require('../../assets/Line 1.png')}
+            source={require('../../assets/Linha.png')}
             style={styles.bottomLine}
             resizeMode="contain"
           />
