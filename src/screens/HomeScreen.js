@@ -61,7 +61,11 @@ export default function HomeScreen({ navigation }) {
             </Text>
           </View>
 
-          <TouchableOpacity style={styles.newButton} activeOpacity={0.85}>
+          <TouchableOpacity
+            style={styles.newButton}
+            activeOpacity={0.85}
+            onPress={() => navigation && navigation.navigate('Agenda')}
+          >
             <Text style={styles.newButtonText}>+ Novo</Text>
           </TouchableOpacity>
         </View>
@@ -89,10 +93,12 @@ export default function HomeScreen({ navigation }) {
           })}
         </View>
 
-        {/* Secção: Próxima jornada */}
+        {/* Secção: Próxima jornada (LINKADO PARA 'Agenda') */}
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Próxima jornada</Text>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation && navigation.navigate('Agenda')}
+          >
             <Text style={styles.sectionLink}>Ver agenda</Text>
           </TouchableOpacity>
         </View>
@@ -126,7 +132,11 @@ export default function HomeScreen({ navigation }) {
 
           <View style={styles.dividerLight} />
 
-          <TouchableOpacity style={styles.shiftDetailRow} activeOpacity={0.7}>
+          <TouchableOpacity
+            style={styles.shiftDetailRow}
+            activeOpacity={0.7}
+            onPress={() => navigation && navigation.navigate('Agenda')}
+          >
             <Text style={styles.shiftDetailText}>Ver detalhe da jornada</Text>
             <Feather name="chevron-right" size={20} color="#054441" />
           </TouchableOpacity>
@@ -251,9 +261,13 @@ export default function HomeScreen({ navigation }) {
           </Text>
         </TouchableOpacity>
 
+        {/* Botão Agenda LINKADO para abrir a AgendaScreen */}
         <TouchableOpacity
           style={styles.tabItem}
-          onPress={() => setAbaAtiva('Agenda')}
+          onPress={() => {
+            setAbaAtiva('Agenda');
+            if (navigation) navigation.navigate('Agenda');
+          }}
         >
           <Ionicons
             name="calendar-outline"
