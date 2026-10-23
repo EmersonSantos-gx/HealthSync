@@ -41,15 +41,17 @@ export default function RegisterScreen({ navigation }) {
     setModalVisivel(false);
   };
 
-  const handleCriarConta = () => {
+ const handleCriarConta = () => {
     // Validação simples (opcional)
     if (!nome || !email || !senha) {
       alert('Por favor, preencha os campos obrigatórios.');
       return;
     }
 
-    // Redireciona para a tela de Login (ou para 'Home' quando criarmos)
-    navigation.navigate('Login');
+    // Redireciona para a tela de Conta Criada passando o e-mail preenchido
+    navigation.navigate('ContaCriada', {
+      email: email || 'seuemail@exemple.com',
+    });
   };
 
   return (

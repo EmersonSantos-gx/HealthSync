@@ -6,6 +6,7 @@ import SplashScreen from './src/screens/SplashScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import RegisterScreen from './src/screens/RegisterScreen';
 import AccountCreatedScreen from './src/screens/AccountCreatedScreen';
+import HomeScreen from './src/screens/HomeScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -13,7 +14,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Cadastro"
+        initialRouteName="Home"
         screenOptions={{
           headerShown: false,
           animation: 'slide_from_right',
@@ -23,6 +24,7 @@ export default function App() {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Cadastro" component={RegisterScreen} />
         <Stack.Screen name="ContaCriada" component={AccountCreatedScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -42,7 +42,7 @@ export default function AccountCreatedScreen({ navigation, route }) {
         {/* Logomarca no Topo */}
         <View style={styles.logoContainer}>
           <Image
-            source={require('../../assets/LOGOMARCAHS.png')}
+            source={require('../../assets/logomarcahsync.png')}
             style={styles.logoImage}
             resizeMode="contain"
           />

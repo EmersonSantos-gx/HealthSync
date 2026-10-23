@@ -18,6 +18,7 @@ export default function LoginScreen({ navigation }) {
 
   const handleLogin = () => {
     console.log('Login com:', email);
+    navigation.navigate('Home');
   };
 
   return (
@@ -72,7 +73,7 @@ export default function LoginScreen({ navigation }) {
             <Text style={styles.forgotPasswordText}>Esqueceu sua senha?</Text>
           </TouchableOpacity>
 
-          {/* Botão Entrar */}
+          {/* Botão Entrar (LINKADO PARA A ROTA 'Home') */}
           <TouchableOpacity
             style={styles.loginButton}
             activeOpacity={0.85}
@@ -242,7 +243,19 @@ const styles = StyleSheet.create({
   legalLink: {
     fontSize: 14,
     color: '#054441',
-
-
- },
- });
+    textDecorationLine: 'underline',
+    lineHeight: 19,
+  },
+  helpButton: {
+    marginTop: 14,
+    marginBottom: 16,
+  },
+  helpText: {
+    fontSize: 15,
+    color: '#054441',
+  },
+  bottomLine: {
+    width: 145,
+    height: 5,
+  },
+});
