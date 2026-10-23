@@ -190,10 +190,19 @@ export default function RegisterScreen({ navigation }) {
           <TouchableOpacity
             style={styles.submitButton}
             activeOpacity={0.85}
-            onPress={handleCriarConta}
+            onPress={() =>
+              navigation.navigate('ContaCriada', {
+                email: email || 'seuemail@exemple.com',
+              })
+            }
           >
             <Text style={styles.submitButtonText}>Criar minha conta</Text>
-            <Feather name="arrow-right" size={24} color="#FFFFFF" style={styles.submitArrow} />
+            <Feather
+              name="arrow-right"
+              size={24}
+              color="#FFFFFF"
+              style={styles.submitArrow}
+            />
           </TouchableOpacity>
         </View>
 
