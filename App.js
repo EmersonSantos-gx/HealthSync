@@ -8,6 +8,10 @@ import RegisterScreen from './src/screens/RegisterScreen';
 import AccountCreatedScreen from './src/screens/AccountCreatedScreen';
 import HomeScreen from './src/screens/HomeScreen';
 import AgendaScreen from './src/screens/AgendaScreen';
+import FinanceiroScreen from './src/screens/FinanceiroScreen';
+import AvisosScreen from './src/screens/AvisosScreen';
+import NotificacoesScreen from './src/screens/NotificacoesScreen';
+import AdicionarPlantaoScreen from './src/screens/AdicionarPlantaoScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +31,13 @@ export default function App() {
         <Stack.Screen name="ContaCriada" component={AccountCreatedScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Agenda" component={AgendaScreen} />
+        <Stack.Screen name="Financeiro" component={FinanceiroScreen} />
+        <Stack.Screen name="Avisos" component={AvisosScreen} />
+        <Stack.Screen name="Notificacoes" component={NotificacoesScreen} />
+        <Stack.Screen
+          name="AdicionarPlantao"
+          component={AdicionarPlantaoScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -103,7 +103,7 @@ export default function AgendaScreen({ navigation }) {
           </View>
 
           <TouchableOpacity style={styles.filterPillRight} activeOpacity={0.8}>
-            <Text style={styles.filterText}>Lista</Text>
+            <Text style={styles.filterText}>Hoje</Text>
           </TouchableOpacity>
         </View>
 
@@ -233,15 +233,19 @@ export default function AgendaScreen({ navigation }) {
         </View>
 
         {/* Botão + Adicionar jornada */}
-        <TouchableOpacity style={styles.addShiftButton} activeOpacity={0.85}>
+        <TouchableOpacity
+          style={styles.addShiftButton}
+          activeOpacity={0.85}
+         onPress={() => navigation && navigation.navigate('AdicionarPlantao')}
+>
           <Feather
-            name="plus"
-            size={20}
-            color="#FFFFFF"
+         name="plus"
+         size={20}
+          color="#FFFFFF"
             style={styles.addShiftIcon}
-          />
-          <Text style={styles.addShiftButtonText}>Adicionar jornada</Text>
-        </TouchableOpacity>
+         />
+            <Text style={styles.addShiftButtonText}>Adicionar jornada</Text>
+</TouchableOpacity>
       </ScrollView>
 
       {/* Barra de Navegação Inferior */}
@@ -259,14 +263,13 @@ export default function AgendaScreen({ navigation }) {
           <Text style={[styles.tabLabel, styles.tabLabelActive]}>Agenda</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.tabItem}>
-          <MaterialCommunityIcons
-            name="wallet-outline"
-            size={28}
-            color="#8D8D8D"
-          />
+        <TouchableOpacity
+          style={styles.tabItem}
+        onPress={() => navigation && navigation.navigate('Financeiro')}
+          >
+          <MaterialCommunityIcons name="wallet-outline" size={28} color="#8D8D8D" />
           <Text style={styles.tabLabel}>Financeiro</Text>
-        </TouchableOpacity>
+          </TouchableOpacity>
 
         <TouchableOpacity style={styles.tabItem}>
           <Ionicons name="person-circle-outline" size={28} color="#8D8D8D" />
@@ -323,7 +326,7 @@ const styles = StyleSheet.create({
     marginBottom: 18,
   },
   pageTitle: {
-    fontSize: 30,
+    fontSize: 25,
     fontWeight: '800',
     color: '#054441',
     marginBottom: 4,

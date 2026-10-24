@@ -45,7 +45,12 @@ export default function HomeScreen({ navigation }) {
             resizeMode="contain"
           />
 
-          <TouchableOpacity style={styles.circleButton} activeOpacity={0.75}>
+          {/* Botão do Sino linkado para a tela de Avisos */}
+          <TouchableOpacity
+            style={styles.circleButton}
+            activeOpacity={0.75}
+            onPress={() => navigation && navigation.navigate('Notificacoes')}
+          >
             <Feather name="bell" size={22} color="#054441" />
             <View style={styles.notificationDot} />
           </TouchableOpacity>
@@ -62,12 +67,12 @@ export default function HomeScreen({ navigation }) {
           </View>
 
           <TouchableOpacity
-            style={styles.newButton}
-            activeOpacity={0.85}
-            onPress={() => navigation && navigation.navigate('Agenda')}
-          >
-            <Text style={styles.newButtonText}>+ Novo</Text>
-          </TouchableOpacity>
+         style={styles.newButton}
+          activeOpacity={0.85}
+           onPress={() => navigation && navigation.navigate('AdicionarPlantao')}
+>
+          <Text style={styles.newButtonText}>+ Novo</Text>
+</TouchableOpacity>
         </View>
 
         {/* Calendário Semanal */}
@@ -93,7 +98,7 @@ export default function HomeScreen({ navigation }) {
           })}
         </View>
 
-        {/* Secção: Próxima jornada (LINKADO PARA 'Agenda') */}
+        {/* Secção: Próxima jornada */}
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Próxima jornada</Text>
           <TouchableOpacity
@@ -145,7 +150,9 @@ export default function HomeScreen({ navigation }) {
         {/* Secção: Seu financeiro */}
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Seu financeiro</Text>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation && navigation.navigate('Financeiro')}
+          >
             <Text style={styles.sectionLink}>Ver resumo</Text>
           </TouchableOpacity>
         </View>
@@ -197,15 +204,21 @@ export default function HomeScreen({ navigation }) {
           </View>
         </View>
 
-        {/* Secção: Avisos */}
+        {/* Secção: Avisos (Link "Ver todos" direciona para a tela de Avisos) */}
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Avisos</Text>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation && navigation.navigate('Avisos')}
+          >
             <Text style={styles.sectionLink}>Ver todos</Text>
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity style={styles.alertCard} activeOpacity={0.8}>
+        <TouchableOpacity
+          style={styles.alertCard}
+          activeOpacity={0.8}
+          onPress={() => navigation && navigation.navigate('Avisos')}
+        >
           <View style={styles.alertIconBox}>
             <MaterialCommunityIcons
               name="wallet-outline"
@@ -222,7 +235,11 @@ export default function HomeScreen({ navigation }) {
           <Feather name="chevron-right" size={22} color="#2E6F65" />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.alertCard} activeOpacity={0.8}>
+        <TouchableOpacity
+          style={styles.alertCard}
+          activeOpacity={0.8}
+          onPress={() => navigation && navigation.navigate('Avisos')}
+        >
           <View style={styles.alertIconBox}>
             <MaterialCommunityIcons
               name="wallet-outline"
@@ -261,7 +278,6 @@ export default function HomeScreen({ navigation }) {
           </Text>
         </TouchableOpacity>
 
-        {/* Botão Agenda LINKADO para abrir a AgendaScreen */}
         <TouchableOpacity
           style={styles.tabItem}
           onPress={() => {
@@ -286,7 +302,10 @@ export default function HomeScreen({ navigation }) {
 
         <TouchableOpacity
           style={styles.tabItem}
-          onPress={() => setAbaAtiva('Financeiro')}
+          onPress={() => {
+            setAbaAtiva('Financeiro');
+            if (navigation) navigation.navigate('Financeiro');
+          }}
         >
           <MaterialCommunityIcons
             name="wallet-outline"
