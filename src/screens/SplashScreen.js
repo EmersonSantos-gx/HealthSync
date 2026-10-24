@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   View,
   Text,
@@ -6,12 +6,38 @@ import {
   StatusBar,
   Image,
   Dimensions,
+  Animated,
+  Easing,
 } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
 
 export default function SplashScreen({ navigation }) {
+  // Valores animados para girar as órbitas
+  const spinTop = useRef(new Animated.Value(0)).current;
+  const spinBottom = useRef(new Animated.Value(0)).current;
+
   useEffect(() => {
+    // Animação contínua da órbita superior (sentido horário)
+    Animated.loop(
+      Animated.timing(spinTop, {
+        toValue: 1,
+        duration: 8000, // 8 segundos por volta (suave)
+        easing: Easing.linear,
+        useNativeDriver: true,
+      })
+    ).start();
+
+    // Animação contínua da órbita inferior (sentido horário)
+    Animated.loop(
+      Animated.timing(spinBottom, {
+        toValue: 1,
+        duration: 10000, // 10 segundos por volta
+        easing: Easing.linear,
+        useNativeDriver: true,
+      })
+    ).start();
+
     // Redireciona automaticamente para a tela de Login após 3 segundos
     const timer = setTimeout(() => {
       if (navigation) {
@@ -20,45 +46,63 @@ export default function SplashScreen({ navigation }) {
     }, 3000);
 
     return () => clearTimeout(timer);
-  }, [navigation]);
+  }, [navigation, spinTop, spinBottom]);
+
+  // Conversão dos valores para graus de rotação
+  const rotateClockwise = spinTop.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg'],
+  });
+
+  const rotateCounterClockwise = spinBottom.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['360deg', '0deg'], // Gira no sentido contrário para dar dinamismo
+  });
 
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#EFECE6" />
 
-      {/* Órbita Decorativa Superior Esquerda */}
-      <View style={styles.topOrbitOuter}>
+      {/* Órbita Decorativa Superior Esquerda (Girando) */}
+      <Animated.View
+        style={[
+          styles.topOrbitOuter,
+          { transform: [{ rotate: rotateClockwise }] },
+        ]}
+      >
         <View style={styles.topOrbitDot} />
         <View style={styles.topOrbitInner} />
-      </View>
+      </Animated.View>
 
-      {/* Órbita Decorativa Inferior Direita */}
-      <View style={styles.bottomOrbitOuter}>
+      {/* Órbita Decorativa Inferior Direita (Girando) */}
+      <Animated.View
+        style={[
+          styles.bottomOrbitOuter,
+          { transform: [{ rotate: rotateClockwise }] },
+        ]}
+      >
         <View style={styles.bottomOrbitSmallDot} />
-        <View style={styles.bottomOrbitInner}>
-          <View style={styles.bottomOrbitLargeDot} />
-        </View>
-      </View>
 
-      {/* Conteúdo Central: Logo + Textos */}
+        {/* Círculo interno girando no sentido oposto */}
+        <Animated.View
+          style={[
+            styles.bottomOrbitInner,
+            { transform: [{ rotate: rotateCounterClockwise }] },
+          ]}
+        >
+          <View style={styles.bottomOrbitLargeDot} />
+        </Animated.View>
+      </Animated.View>
+
+      {/* Conteúdo Central: Logomarca + Textos */}
       <View style={styles.centerContent}>
         <View style={styles.brandRow}>
-          {/* 
-            DICA: Exporte o ícone do logo do Figma como PNG (ex: logo-icon.png),
-            coloque na pasta "assets" e descomente o componente <Image /> abaixo:
-          */}
-          {/* <Image source={require('../../assets/logo-icon.png')} style={styles.logoImage} resizeMode="contain" /> */}
-
-          {/* Ícone provisório estilizado caso ainda não tenha exportado o PNG */}
-          <View style={styles.logoIconPlaceholder}>
-            <View style={styles.logoShapeLeft} />
-            <View style={styles.logoShapeRight} />
-          </View>
-
-          <Text style={styles.brandTitle}>
-            <Text style={styles.brandBold}>Health</Text>
-            <Text style={styles.brandLight}>Sync</Text>
-          </Text>
+          {/* Logomarca original exportada do Figma */}
+          <Image
+            source={require('../../assets/logomarcahsync.png')}
+            style={styles.logoImage}
+            resizeMode="contain"
+          />
         </View>
 
         <Text style={styles.tagline}>Sua rotina, em sintonia.</Text>
@@ -80,7 +124,7 @@ export default function SplashScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#EFECE6', // Fundo bege claro fiel ao layout
+    backgroundColor: '#EFECE6',
     justifyContent: 'space-between',
     alignItems: 'center',
     overflow: 'hidden',
@@ -169,54 +213,8 @@ const styles = StyleSheet.create({
     marginBottom: 32,
   },
   logoImage: {
-    width: 68,
-    height: 68,
-    marginRight: 14,
-  },
-  logoIconPlaceholder: {
-    width: 64,
+    width: 240,
     height: 64,
-    marginRight: 14,
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
-  },
-  logoShapeLeft: {
-    position: 'absolute',
-    left: 4,
-    top: 6,
-    width: 34,
-    height: 38,
-    borderWidth: 10,
-    borderColor: '#054441',
-    borderRightWidth: 0,
-    borderTopLeftRadius: 18,
-    borderBottomLeftRadius: 18,
-    transform: [{ rotate: '-15deg' }],
-  },
-  logoShapeRight: {
-    position: 'absolute',
-    right: 4,
-    bottom: 6,
-    width: 34,
-    height: 38,
-    borderWidth: 10,
-    borderColor: '#054441',
-    borderLeftWidth: 0,
-    borderTopRightRadius: 18,
-    borderBottomRightRadius: 18,
-    transform: [{ rotate: '-15deg' }],
-  },
-  brandTitle: {
-    fontSize: 42,
-    color: '#054441',
-    letterSpacing: -0.5,
-  },
-  brandBold: {
-    fontWeight: '800',
-  },
-  brandLight: {
-    fontWeight: '400',
   },
   tagline: {
     fontSize: 22,
