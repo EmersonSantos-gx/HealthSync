@@ -35,7 +35,10 @@ export default function HomeScreen({ navigation }) {
       >
         {/* Barra Superior: Menu + Logo + Notificação */}
         <View style={styles.topBar}>
-          <TouchableOpacity style={styles.circleButton} activeOpacity={0.75}>
+          <TouchableOpacity style={styles.circleButton} activeOpacity={0.75}
+          onPress={() => navigation && navigation.navigate('Menu')}
+          >
+            
             <Feather name="menu" size={24} color="#054441" />
           </TouchableOpacity>
 
@@ -323,23 +326,12 @@ export default function HomeScreen({ navigation }) {
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={styles.tabItem}
-          onPress={() => setAbaAtiva('Perfil')}
-        >
-          <Ionicons
-            name="person-circle-outline"
-            size={28}
-            color={abaAtiva === 'Perfil' ? '#054441' : '#8D8D8D'}
-          />
-          <Text
-            style={[
-              styles.tabLabel,
-              abaAtiva === 'Perfil' && styles.tabLabelActive,
-            ]}
-          >
-            Perfil
-          </Text>
-        </TouchableOpacity>
+            style={styles.tabItem}
+            onPress={() => navigation && navigation.navigate('Perfil')}
+>
+              <Ionicons name="person-circle-outline" size={28} color="#8D8D8D" />
+               <Text style={styles.tabLabel}>Perfil</Text>
+                </TouchableOpacity>
       </View>
     </View>
   );

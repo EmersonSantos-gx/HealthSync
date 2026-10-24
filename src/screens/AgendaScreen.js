@@ -38,7 +38,11 @@ export default function AgendaScreen({ navigation }) {
       >
         {/* Barra Superior */}
         <View style={styles.topBar}>
-          <TouchableOpacity style={styles.circleButton} activeOpacity={0.75}>
+          <TouchableOpacity
+            style={styles.circleButton}
+            activeOpacity={0.75}
+            onPress={() => navigation && navigation.navigate('Menu')}
+          >
             <Feather name="menu" size={24} color="#054441" />
           </TouchableOpacity>
 
@@ -48,7 +52,11 @@ export default function AgendaScreen({ navigation }) {
             resizeMode="contain"
           />
 
-          <TouchableOpacity style={styles.circleButton} activeOpacity={0.75}>
+          <TouchableOpacity
+            style={styles.circleButton}
+            activeOpacity={0.75}
+            onPress={() => navigation && navigation.navigate('Notificacoes')}
+          >
             <Feather name="bell" size={22} color="#054441" />
             <View style={styles.notificationDot} />
           </TouchableOpacity>
@@ -102,7 +110,11 @@ export default function AgendaScreen({ navigation }) {
             </TouchableOpacity>
           </View>
 
-          <TouchableOpacity style={styles.filterPillRight} activeOpacity={0.8}>
+          <TouchableOpacity
+            style={styles.filterPillRight}
+            activeOpacity={0.8}
+            onPress={() => setDiaSelecionado(diaHoje)}
+          >
             <Text style={styles.filterText}>Hoje</Text>
           </TouchableOpacity>
         </View>
@@ -236,16 +248,16 @@ export default function AgendaScreen({ navigation }) {
         <TouchableOpacity
           style={styles.addShiftButton}
           activeOpacity={0.85}
-         onPress={() => navigation && navigation.navigate('AdicionarPlantao')}
->
+          onPress={() => navigation && navigation.navigate('AdicionarPlantao')}
+        >
           <Feather
-         name="plus"
-         size={20}
-          color="#FFFFFF"
+            name="plus"
+            size={20}
+            color="#FFFFFF"
             style={styles.addShiftIcon}
-         />
-            <Text style={styles.addShiftButtonText}>Adicionar jornada</Text>
-</TouchableOpacity>
+          />
+          <Text style={styles.addShiftButtonText}>Adicionar jornada</Text>
+        </TouchableOpacity>
       </ScrollView>
 
       {/* Barra de Navegação Inferior */}
@@ -265,13 +277,20 @@ export default function AgendaScreen({ navigation }) {
 
         <TouchableOpacity
           style={styles.tabItem}
-        onPress={() => navigation && navigation.navigate('Financeiro')}
-          >
-          <MaterialCommunityIcons name="wallet-outline" size={28} color="#8D8D8D" />
+          onPress={() => navigation && navigation.navigate('Financeiro')}
+        >
+          <MaterialCommunityIcons
+            name="wallet-outline"
+            size={28}
+            color="#8D8D8D"
+          />
           <Text style={styles.tabLabel}>Financeiro</Text>
-          </TouchableOpacity>
+        </TouchableOpacity>
 
-        <TouchableOpacity style={styles.tabItem}>
+        <TouchableOpacity
+          style={styles.tabItem}
+          onPress={() => navigation && navigation.navigate('Perfil')}
+        >
           <Ionicons name="person-circle-outline" size={28} color="#8D8D8D" />
           <Text style={styles.tabLabel}>Perfil</Text>
         </TouchableOpacity>

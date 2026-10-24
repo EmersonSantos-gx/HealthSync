@@ -60,7 +60,10 @@ export default function FinanceiroScreen({ navigation }) {
       >
         {/* Barra Superior */}
         <View style={styles.topBar}>
-          <TouchableOpacity style={styles.circleButton} activeOpacity={0.75}>
+          <TouchableOpacity style={styles.circleButton} activeOpacity={0.75}
+          onPress={() => navigation && navigation.navigate('Menu')}
+          >
+            
             <Feather name="menu" size={24} color="#054441" />
           </TouchableOpacity>
 
@@ -223,10 +226,13 @@ export default function FinanceiroScreen({ navigation }) {
           </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.tabItem}>
-          <Ionicons name="person-circle-outline" size={28} color="#8D8D8D" />
-          <Text style={styles.tabLabel}>Perfil</Text>
-        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.tabItem}
+            onPress={() => navigation && navigation.navigate('Perfil')}
+          >
+         <Ionicons name="person-circle-outline" size={28} color="#8D8D8D" />
+            <Text style={styles.tabLabel}>Perfil</Text>
+          </TouchableOpacity>
       </View>
     </View>
   );

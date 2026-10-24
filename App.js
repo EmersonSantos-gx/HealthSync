@@ -12,6 +12,8 @@ import FinanceiroScreen from './src/screens/FinanceiroScreen';
 import AvisosScreen from './src/screens/AvisosScreen';
 import NotificacoesScreen from './src/screens/NotificacoesScreen';
 import AdicionarPlantaoScreen from './src/screens/AdicionarPlantaoScreen';
+import PerfilScreen from './src/screens/PerfilScreen';
+import MenuScreen from './src/screens/MenuScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -34,9 +36,15 @@ export default function App() {
         <Stack.Screen name="Financeiro" component={FinanceiroScreen} />
         <Stack.Screen name="Avisos" component={AvisosScreen} />
         <Stack.Screen name="Notificacoes" component={NotificacoesScreen} />
+        <Stack.Screen name="Perfil" component={PerfilScreen} />
         <Stack.Screen
           name="AdicionarPlantao"
           component={AdicionarPlantaoScreen}
+        />
+        <Stack.Screen
+          name="Menu"
+          component={MenuScreen}
+          options={{ animation: 'slide_from_left' }}
         />
       </Stack.Navigator>
     </NavigationContainer>
